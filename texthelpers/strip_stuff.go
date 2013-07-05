@@ -49,7 +49,7 @@ func StripMultipleWS(body string) string {
 func StripPunctuation(body string) string {
 	// TODO: detect/log if Compile broke
 	// TODO: use unicode table range ?
-	rx_p := re.MustCompile(`[\_\-⁞«»"':：「」.。,;<>、?？¿!！¡/／\[\]\(\)\*#&@$\\=\+\^]+`)
+	rx_p := re.MustCompile(`[\_\-⁞«»"'“”:：「」.。,;<>、?？¿!！¡/／\[\]\(\)\*#&@$\\=\+\^]+`)
 	return rx_p.ReplaceAllLiteralString(body, " ")
 }
 
