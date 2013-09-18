@@ -100,12 +100,12 @@ func (s *StringSet) Difference(s2 *StringSet) *StringSet {
 	}
 
 	for _, elm := range s.members {
-		if _, notExists := s2.m[elm]; !notExists {
+		if !s2.HasMember(elm) {
 			ds.Add(elm)
 		}
 	}
 	for _, elm := range s2.members {
-		if _, notExists := ds.m[elm]; !notExists {
+		if !s.HasMember(elm) {
 			ds.Add(elm)
 		}
 	}
