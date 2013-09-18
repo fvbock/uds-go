@@ -2,7 +2,6 @@ package set
 
 import (
 	"fmt"
-	"time"
 )
 
 type StringSet struct {
@@ -65,7 +64,6 @@ func (s *StringSet) Union(s2 *StringSet) *StringSet {
 }
 
 func (s *StringSet) Intersect(s2 *StringSet) *StringSet {
-	st := time.Now()
 	is := NewStringSet()
 	if s.Len() == 0 || s2.Len() == 0 {
 		return is
@@ -84,7 +82,6 @@ func (s *StringSet) Intersect(s2 *StringSet) *StringSet {
 			}
 		}
 	}
-	fmt.Println("INTERSECT took:", time.Since(st))
 	return is
 }
 
