@@ -1,10 +1,9 @@
 package texthelpers
 
 import (
-	"strings"
-	// "log"
-	md "github.com/fvbock/blackfriday"
+	"fmt"
 	re "regexp"
+	"strings"
 )
 
 const (
@@ -23,8 +22,7 @@ func Strip(s string, flags int) string {
 		// s = StripHtml(s)
 	}
 	if flags == STRIP_ALL || (STRIP_MARKDOWN&flags == STRIP_MARKDOWN) {
-		// log.Print("STRIP_MARKDOWN is not yet implemented!")
-		// s = StripMarkdown(s)
+		s = StripMarkdown(s)
 	}
 	if flags == STRIP_ALL || (STRIP_NUMBERS&flags == STRIP_NUMBERS) {
 		s = StripNumbers(s)
@@ -47,9 +45,7 @@ func StripMultipleWS(body string) string {
 }
 
 func StripPunctuation(body string) string {
-	// TODO: detect/log if Compile broke
-	// TODO: use unicode table range ?
-	rx_p := re.MustCompile(`[\_\-⁞«»"'“”:：「」.。,;<>、?？¿!！¡/／\[\]\(\)\*#&@$\\=\+\^]+`)
+	rx_p := re.MustCompile(fmt.Sprintf("[%s]+", re.QuoteMeta("`’?!.,;/\"'#$%&()[]⁞«»“”:：「」。<>、？¿！¡／+*{}_^~=|—…\\")))
 	return rx_p.ReplaceAllLiteralString(body, " ")
 }
 
@@ -59,7 +55,8 @@ func StripNumbers(body string) string {
 }
 
 func StripMarkdown(body string) string {
-	strip_md := md.StrippedRenderer(0)
-	md_extensions := 0
-	return string(md.Markdown([]byte(body), strip_md, md_extensions))
+	// for now i just want to strip certain patterns (images) so i just use regex
+	// rx_p := re.MustCompile(`!?\[([^\]]+)\]\(([^)]+)\)`) // images and links
+	rx_p := re.MustCompile(`!\[([^\]]+)\]\(([^)]+)\)`)
+	return rx_p.ReplaceAllLiteralString(body, "")
 }
