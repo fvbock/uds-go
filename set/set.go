@@ -140,3 +140,12 @@ func (s *StringSet) HasMembers(elements ...string) bool {
 	ms := NewStringSet(elements...)
 	return ms.IsSubset(s)
 }
+
+func (s *StringSet) HasAnyOf(elements ...string) bool {
+	for _, elm := range elements {
+		if s.HasMember(elm) {
+			return true
+		}
+	}
+	return false
+}
