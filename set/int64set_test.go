@@ -4,24 +4,24 @@ import (
 	"testing"
 )
 
-func TestIntSetAdd(t *testing.T) {
+func TestInt64SetAdd(t *testing.T) {
 
-	s1 := NewIntSet()
+	s1 := NewInt64Set()
 	t.Log(s1)
 	s1.Add(1)
 	t.Log(s1)
 
-	s2 := NewIntSet(2, 3)
+	s2 := NewInt64Set(2, 3)
 	t.Log(s2)
 
-	s3 := NewIntSet([]int{2, 4, 2}...)
+	s3 := NewInt64Set([]int64{2, 4, 2}...)
 	t.Log(s3)
 	s3.Remove(1)
 	t.Log(s3)
 	s3.Remove(2)
 	t.Log(s3)
 
-	s4 := NewIntSet([]int{1, 2, 3, 4}...)
+	s4 := NewInt64Set([]int64{1, 2, 3, 4}...)
 	t.Log(s4)
 	s4.Remove(2)
 	t.Log(s4)
@@ -41,20 +41,20 @@ func TestIntSetAdd(t *testing.T) {
 	t.Log("S5 == S6", s5.IsEqual(s6))
 	t.Log("S6 == S5", s6.IsEqual(s5))
 
-	sA := NewIntSet([]int{2, 4}...)
-	sB := NewIntSet([]int{1, 2, 3, 6}...)
+	sA := NewInt64Set([]int64{2, 4}...)
+	sB := NewInt64Set([]int64{1, 2, 3, 6}...)
 	s7 := sA.Intersect(sB)
 	t.Log("INTERSECT", sA, sB)
 	t.Log("S7", s7)
 
-	sC := NewIntSet([]int{}...)
-	sD := NewIntSet([]int{}...)
+	sC := NewInt64Set([]int64{}...)
+	sD := NewInt64Set([]int64{}...)
 	s8 := sC.Intersect(sD)
 	t.Log("INTERSECT", sC, sD)
 	t.Log("S8", s8)
 
-	sE := NewIntSet([]int{2, 4}...)
-	sF := NewIntSet([]int{1, 3, 6, 7}...)
+	sE := NewInt64Set([]int64{2, 4}...)
+	sF := NewInt64Set([]int64{1, 3, 6, 7}...)
 	s9 := sE.Intersect(sF)
 	t.Log("INTERSECT", sE, sF)
 	t.Log("S9", s9)
@@ -67,21 +67,21 @@ func TestIntSetAdd(t *testing.T) {
 	// t.Log("INTERSECT", sG.Len(), sH.Len())
 	// t.Log("S11", s11, s11.Len())
 
-	sI := NewIntSet([]int{2, 4}...)
-	sJ := NewIntSet([]int{1, 2, 4, 7}...)
+	sI := NewInt64Set([]int64{2, 4}...)
+	sJ := NewInt64Set([]int64{1, 2, 4, 7}...)
 	s12 := sI.Difference(sJ)
 	t.Log("DIFFERENCE", sI, sJ)
 	t.Log("S12", s12)
 
-	sK := NewIntSet([]int{}...)
-	sL := NewIntSet([]int{1, 2, 4, 7}...)
+	sK := NewInt64Set([]int64{}...)
+	sL := NewInt64Set([]int64{1, 2, 4, 7}...)
 	s13 := sK.Difference(sL)
 	t.Log("DIFFERENCE", sK, sL)
 	t.Log("S13", s13)
 
-	sM := NewIntSet([]int{1, 2}...)
-	sN := NewIntSet([]int{1, 2, 3}...)
-	sO := NewIntSet([]int{1, 2, 4, 7}...)
+	sM := NewInt64Set([]int64{1, 2}...)
+	sN := NewInt64Set([]int64{1, 2, 3}...)
+	sO := NewInt64Set([]int64{1, 2, 4, 7}...)
 
 	t.Log("SM", sM)
 	t.Log("SN", sN)

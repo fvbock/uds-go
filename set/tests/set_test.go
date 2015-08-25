@@ -1,11 +1,12 @@
 package set
 
 import (
-	"github.com/fvbock/uds-go/set"
 	"testing"
+
+	"github.com/fvbock/uds-go/set"
 )
 
-func TestAdd(t *testing.T) {
+func TestStringSetAdd(t *testing.T) {
 
 	s1 := set.NewStringSet()
 	t.Log(s1)
